@@ -1,6 +1,6 @@
-
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "react-native";
 import SplashScreens from "../screens/splash_screens/splashscreens";
 import LoginScreens from "../screens/login_screens/login_screens";
 import SignUp from "../screens/signup_screens/sign_up";
@@ -26,29 +26,31 @@ const Stack = createNativeStackNavigator();
 
 function StackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="SplashScreens" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="SplashScreens" component={SplashScreens} />
-      <Stack.Screen name="login_email" component={LoginScreens} />
-      <Stack.Screen name="sign_up" component={SignUp} />
-      <Stack.Screen name="MainTabs" component={MainTabs} />
-      <Stack.Screen name="forget_password" component={ForgetPasswordScreen} />
-      <Stack.Screen name="otp_screen" component={OtpScreen} />
-      <Stack.Screen name="password_reset" component={PasswordResetScreen} />
-      <Stack.Screen name="changed_password" component={ChangedPasswordScreen} />
-      <Stack.Screen name="services" component={Services} />
-      <Stack.Screen name="marriage_contracts" component={MarriageContracts} />
-      <Stack.Screen name="languague" component={Languague} />
-      <Stack.Screen name="loaction_form" component={LoactionForm} />
-      <Stack.Screen name="order_recieved" component={OrderRecieved} />
-      <Stack.Screen name="support_chat" component={SupportChat} />
-      <Stack.Screen name="about_longua_services" component={AboutLonguaServices} />
-      <Stack.Screen name="privacy_policy" component={PrivacyPolicy} />
-      <Stack.Screen name="accepted_orders" component={AcceptedOrders} />
-      <Stack.Screen name="checkout" component={Checkout} />
-      <Stack.Screen name="order_confirm" component={OrderConfirm} />
-      <Stack.Screen name="order_details" component={OrderDetails} />
-    
-    </Stack.Navigator>
+    <>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF"  />
+      <Stack.Navigator initialRouteName="SplashScreens" screenOptions={{ headerShown: false }} >
+        <Stack.Screen name="SplashScreens" component={SplashScreens} />
+        <Stack.Screen name="login_email" component={LoginScreens} />
+        <Stack.Screen name="sign_up" component={SignUp} />
+        <Stack.Screen name="MainTabs" component={MainTabs} />
+        <Stack.Screen name="forget_password" component={ForgetPasswordScreen} />
+        <Stack.Screen name="otp_screen" component={OtpScreen} />
+        <Stack.Screen name="password_reset" component={PasswordResetScreen} />
+        <Stack.Screen name="changed_password" component={ChangedPasswordScreen} />
+        <Stack.Screen name="services" component={Services} />
+        <Stack.Screen name="marriage_contracts" component={MarriageContracts} />
+        <Stack.Screen name="languague" component={Languague} />
+        <Stack.Screen name="loaction_form" component={LoactionForm} />
+        <Stack.Screen name="order_recieved" component={OrderRecieved} />
+        <Stack.Screen name="support_chat" component={SupportChat} />
+        <Stack.Screen name="about_longua_services" component={AboutLonguaServices} />
+        <Stack.Screen name="privacy_policy" component={PrivacyPolicy} />
+        <Stack.Screen name="accepted_orders" component={AcceptedOrders} />
+        <Stack.Screen name="checkout" component={Checkout} />
+        <Stack.Screen name="order_confirm" component={OrderConfirm} />
+        <Stack.Screen name="order_details" component={OrderDetails} />
+      </Stack.Navigator>
+    </>
   );
 }
 

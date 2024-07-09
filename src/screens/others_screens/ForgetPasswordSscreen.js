@@ -40,21 +40,24 @@ const styles = StyleSheet.create({
   },
   description: {
     fontWeight: "500",
-     top: 30,
+     top: -20,
+     color:'black',
     fontSize: 15,
     left: 30,
   },
   inputContainer: {
     paddingHorizontal: 20,
     marginTop: 20,
-    top: 40,
-    height: 90,
+    top: -10,
+    height: 80,
+    
    
   },
   leftText: {
     fontSize: 14,
     fontWeight: "bold",
     marginLeft: 10,
+    color:'black',
   },
   button: {
     width: "80%",
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
     marginBottom: 20,
-    bottom: 20,
+    bottom: 60,
   },
   buttonText: {
     color: "white",

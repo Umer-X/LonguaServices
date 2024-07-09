@@ -10,7 +10,7 @@ const AboutLonguaServices = ({ navigation }) => {
         headerContent="Privacy Policy"
         onPressArrow={() => navigation.goBack()}
       />
-      <ScrollView style={{top:20,}} contentContainerStyle={styles.contentContainer}>
+      <ScrollView style={{top:0,}} contentContainerStyle={styles.contentContainer}>
         <Text style={styles.point}>
           At LinguaService, we are committed to protecting your privacy and
           ensuring the security of your personal information. This Privacy

@@ -16,7 +16,7 @@ const Account = ({ navigation }) => {
       </View>
       <View style={styles.profileContainer}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={require('../../assets/logo.png')} />
+          <Image style={styles.image} source={require('../../assets/profile-pic.jpeg')} />
         </View>
         <View style={styles.profileTextContainer}>
           <Text style={styles.profileName}>Ahmed Baqir</Text>
@@ -26,11 +26,13 @@ const Account = ({ navigation }) => {
       <View style={styles.checkMainContainer}>
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-            <Icon name="settings-outline" size={24} color="gray" />
+           <Image
+            source={require('../../assets/account-icons/setting-icon.png')}
+           />
             <Text style={styles.checkText}>Settings</Text>
           </View>
           <TouchableOpacity onPress={handleNavigateToLanguages}>
-            <Image
+            <Image 
               source={require("../../assets/arrowRight.png")}
               style={styles.arrowIcon}
             />
@@ -39,7 +41,10 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-            <Icon name="cart-outline" size={24} color="gray" />
+          <Image 
+              source={require("../../assets/account-icons/orders-icon.png")}
+              style={styles.arrowIcon}
+            />
             <Text style={styles.checkText}>My Orders</Text>
           </View>
           <TouchableOpacity    onPress={() => navigation.navigate('accepted_orders')} >
@@ -52,7 +57,10 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-            <Icon name="lock-closed-outline" size={24} color="gray" />
+           <Image 
+              source={require("../../assets/account-icons/privacy-policy.png")}
+              style={styles.arrowIcon}
+            />
             <Text style={styles.checkText}>Privacy Policy</Text>
           </View>
           <TouchableOpacity 
@@ -67,7 +75,10 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-            <Icon name="information-circle-outline" size={24} color="gray" />
+          <Image 
+              source={require("../../assets/account-icons/about-icon.png")}
+              style={styles.arrowIcon}
+            />
             <Text style={styles.checkText}>About Lingua Services</Text>
           </View>
           <TouchableOpacity onPress={() => navigation.navigate('about_longua_services')}>
@@ -81,7 +92,10 @@ const Account = ({ navigation }) => {
       <TouchableOpacity style={styles.logoutContainer}
       onPress={() => navigation.navigate('login_email')}
       >
-        <Icon name="log-out-outline" size={24} color="red" />
+         <Image
+              source={require("../../assets/log-out.png")}
+              style={styles.arrowIcon}
+            />    
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </View>
@@ -92,8 +106,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'ios' ? 50 : 30,
+    paddingHorizontal: 10,
+    paddingTop: Platform.OS === 'ios' ? 30 : 0,
   },
   titleContainer: {
     marginBottom: 20,
@@ -102,6 +116,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: '700',
+    color: 'black',
+    left: 10,
   },
   profileContainer: {
     alignItems: 'center',
@@ -122,6 +138,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 20,
     fontWeight: '600',
+    color: 'black',
   },
   editAccount: {
     fontSize: 16,
@@ -160,8 +177,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    marginTop: '22%',
-    padding: 15,
+    marginTop: '15%',
+    padding:15,
   },
   logoutText: {
     fontSize: 18,

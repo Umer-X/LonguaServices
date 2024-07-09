@@ -48,14 +48,14 @@ const OrderDetails = () => {
             source={require("../../assets/tick.png")}
             style={styles.tickIcon}
           />
-          <Text>Attached the Approved legal Stamp</Text>
+          <Text style={{color:'black',}}>Attached the Approved legal Stamp</Text>
         </View>
         <View style={styles.descriptionItem}>
           <Image
             source={require("../../assets/tick.png")}
             style={styles.tickIcon}
           />
-          <Text>
+          <Text style={{color:'black',}}>
             Shipping to:{" "}
             <Text style={styles.highlightedText}>
               16 Yaho Street 4538808 Jerusalem
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
   bottomtext: {
     fontSize: 20,
     fontWeight: "700",
+    color:'black',
   },
   orderFooter: {
     backgroundColor: "#FAFAFA",
@@ -136,6 +137,7 @@ const styles = StyleSheet.create({
     marginBottom: -10,
     padding: 10,
     width: '100%',
+    
     justifyContent: "center",
     alignItems: "center",
   },
@@ -165,6 +167,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 15,
     fontWeight: "700",
+    
   },
   reviewText: {
     color: bgColor.primary_color,
@@ -183,6 +186,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
+    
   },
   highlightedText: {
     color: bgColor.primary_color,
@@ -198,22 +202,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 7,
+   
+    
   },
   tickIcon: {
     width: 20,
     height: 20,
     marginRight: 10,
+    
   },
   title: {
     fontSize: 20,
     fontWeight: "700",
+    color:'black',
     marginBottom: 8,
   },
   buttonContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    top: 180,
+    top: 130,
   },
   button: {
     width: "75%",
@@ -223,7 +231,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
     marginBottom: 20,
-    bottom: 20,
+    bottom: 0,
   },
   buttonText: {
     color: "white",

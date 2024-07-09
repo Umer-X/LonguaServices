@@ -24,12 +24,13 @@ const HeaderWithArrow = ({ arrowIcon, headerContent }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    alignItems: 'flex-start', 
     paddingHorizontal: 30,
-    right: 5,
-    top:60,
-    height: 80, 
-    marginBottom: 20,
+    width:'100%',
+   
+    top:20,
+   
+    height: 60,
+    marginBottom: 40,
   },
   arrowIcon: {
     width: 24, // Set the same size as the arrow icon

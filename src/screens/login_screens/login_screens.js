@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   StyleSheet,
@@ -10,69 +10,71 @@ import {
   KeyboardAvoidingView,
   Pressable,
   Platform,
-} from "react-native";
-import Input_Field from "../../components/Input_Filed.js";
-import { bgColor } from "../../utils/colors/main_color.js";
-import { useSelector, useDispatch } from 'react-redux';
-import { setField, clearErrors } from '../../redux/loginSlice.js';
+} from 'react-native';
+import Input_Field from '../../components/Input_Filed.js';
+import {bgColor} from '../../utils/colors/main_color.js';
+import {useSelector, useDispatch} from 'react-redux';
+import {setField, clearErrors} from '../../redux/loginSlice.js';
 
-const windowHeight = Dimensions.get("screen").height;
-const windowWidth = Dimensions.get("screen").width;
+const windowHeight = Dimensions.get('screen').height;
+const windowWidth = Dimensions.get('screen').width;
 
 const loginScreensData = [
   {
-    id: "email",
-    title: "Sign in to your Account",
+    id: 'email',
+    title: 'Sign in to your Account',
     fields: [
       {
-        label: "Email Address",
-        placeholder: "Email",
-        icon: "email",
+        label: 'Email Address',
+        placeholder: 'Email',
+        icon: 'email',
         secure: false,
-        id: "email",
+        id: 'email',
       },
       {
-        label: "Password",
-        placeholder: "Password",
-        icon: "password",
+        label: 'Password',
+        placeholder: 'Password',
+        icon: 'password',
         secure: true,
-        id: "password",
+        id: 'password',
       },
     ],
-    alternate: "Use Phone Number",
-    navigateTo: "phone",
+    alternate: 'Use Phone Number',
+    navigateTo: 'phone',
   },
   {
-    id: "phone",
-    title: "Sign in to your Account",
+    id: 'phone',
+    title: 'Sign in to your Account',
     fields: [
       {
-        label: "Phone Number",
-        placeholder: "Phone",
-        icon: "phone",
+        label: 'Phone Number',
+        placeholder: 'Phone',
+        icon: 'phone',
         secure: false,
-        id: "phoneNumber",
+        id: 'phoneNumber',
       },
       {
-        label: "Password",
-        placeholder: "Password",
-        icon: "password",
+        label: 'Password',
+        placeholder: 'Password',
+        icon: 'password',
         secure: true,
-        id: "password",
+        id: 'password',
       },
     ],
-    alternate: "Use Email Address",
-    navigateTo: "email",
+    alternate: 'Use Email Address',
+    navigateTo: 'email',
   },
 ];
 
-const LoginScreens = ({ navigation }) => {
+const LoginScreens = ({navigation}) => {
   const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
   const dispatch = useDispatch();
-  const { email, phoneNumber, password, errors } = useSelector(state => state.login);
+  const {email, phoneNumber, password, errors} = useSelector(
+    state => state.login,
+  );
 
   useEffect(() => {
-    dispatch(clearErrors({ field: null }));
+    dispatch(clearErrors({field: null}));
   }, [currentScreenIndex, dispatch]);
 
   const handleAlternate = () => {
@@ -80,15 +82,15 @@ const LoginScreens = ({ navigation }) => {
   };
 
   const handleInputChange = (field, value) => {
-    dispatch(setField({ field, value }));
-    dispatch(clearErrors({ field }));
+    dispatch(setField({field, value}));
+    dispatch(clearErrors({field}));
   };
 
   const handleSubmit = () => {
-    navigation.navigate("MainTabs");
+    navigation.navigate('MainTabs');
   };
 
-  const getFieldValue = (field) => {
+  const getFieldValue = field => {
     switch (field) {
       case 'email':
         return email;
@@ -104,17 +106,18 @@ const LoginScreens = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         <View style={styles.innerContainer}>
           <View style={styles.textContainer}>
             <Text style={styles.title}>
               Welcome to
-              <Text style={{ color: bgColor.primary_color }}> LinguaServices</Text>
+              <Text style={{color: bgColor.primary_color}}>
+                {' '}
+                LinguaServices
+              </Text>
             </Text>
             <Text style={styles.description}>
               Simplifying translation and document services. Translate,
@@ -143,23 +146,21 @@ const LoginScreens = ({ navigation }) => {
                     placeholder={field.placeholder}
                     secureTextEntry={field.secure}
                     value={getFieldValue(field.id)}
-                    onChangeText={(value) => handleInputChange(field.id, value)}
+                    onChangeText={value => handleInputChange(field.id, value)}
                   />
                 </View>
-                {errors[field.id] && <Text style={styles.errorText}>{errors[field.id]}</Text>}
+                {errors[field.id] && (
+                  <Text style={styles.errorText}>{errors[field.id]}</Text>
+                )}
               </View>
             ))}
             <TouchableOpacity
               style={styles.forgotPasswordContainer}
-              onPress={() => navigation.navigate("forget_password")}
-            >
+              onPress={() => navigation.navigate('forget_password')}>
               <Text style={styles.forgotPasswordText}>Forget Password?</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleSubmit}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
           <View style={styles.orContinueContainer}>
@@ -171,18 +172,27 @@ const LoginScreens = ({ navigation }) => {
           </View>
           <View style={styles.socialIconsContainer}>
             <View style={styles.socialIcons}>
-              <Image source={require('../../assets/search.png')} style={styles.socialIcon} />
+              <Image
+                source={require('../../assets/search.png')}
+                style={styles.socialIcon}
+              />
             </View>
             <View style={styles.socialIcons}>
-              <Image source={require('../../assets/facebook.png')} style={styles.socialIcon} />
+              <Image
+                source={require('../../assets/facebook.png')}
+                style={styles.socialIcon}
+              />
             </View>
             <View style={styles.socialIcons}>
-              <Image source={require('../../assets/instagram.png')} style={styles.socialIcon} />
+              <Image
+                source={require('../../assets/instagram.png')}
+                style={styles.socialIcon}
+              />
             </View>
           </View>
           <View style={styles.signupContainer}>
             <Text style={styles.signupText}>Don't have an Account?</Text>
-            <Pressable onPress={() => navigation.navigate("sign_up")}>
+            <Pressable onPress={() => navigation.navigate('sign_up')}>
               <Text style={styles.signupLink}>Sign-up</Text>
             </Pressable>
           </View>
@@ -195,58 +205,59 @@ const LoginScreens = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   scrollContainer: {
     flexGrow: 1,
-    paddingVertical: 60,
+    paddingVertical: 40,
   },
   innerContainer: {
-   
     flex: 1,
-    alignItems: "center",
-  paddingHorizontal: 20,
-  top: 20,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    top: 30,
   },
   textContainer: {
     bottom: 70,
-    backgroundColor: "red",
+    backgroundColor: 'red',
   },
   title: {
     fontSize: 23,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
+    justifyContent: 'center',
     marginBottom: 0,
+    color: 'black',
   },
   description: {
-    textAlign: "center",
-    fontWeight: "500",
-    color: "#BCBCBC",
+    textAlign: 'center',
+    fontWeight: '500',
+    color: '#BCBCBC',
   },
   inputContainer: {
-    width: "100%",
-   
+    width: '100%',
+
     top: 20,
   },
   subtitle: {
     fontSize: 22,
-    fontWeight: "700",
-    textAlign: "flex-start",
+    fontWeight: '700',
+    textAlign: 'flex-start',
     marginBottom: 40,
-    top: 20
+    top: 20,
   },
   fieldContainer: {
     marginBottom: 20,
   },
   textRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   leftText: {
-    color: "#BCBCBC",
+    color: '#BCBCBC',
   },
   rightText: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: bgColor.primary_color,
   },
   inputFieldContainer: {
@@ -254,7 +265,7 @@ const styles = StyleSheet.create({
     top: 13,
   },
   forgotPasswordContainer: {
-    alignItems: "flex-end",
+    alignItems: 'flex-end',
     bottom: 10,
   },
   forgotPasswordText: {
@@ -266,10 +277,10 @@ const styles = StyleSheet.create({
     backgroundColor: bgColor.primary_color,
     paddingVertical: 15,
     borderRadius: 25,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 2.62,
     elevation: 3,
@@ -278,26 +289,26 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: "#fff",
+    color: '#fff',
   },
   orContinueContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 0,
     top: 50,
   },
   line: {
     height: 1,
     width: 60,
-    backgroundColor: "#BCBCBC",
+    backgroundColor: '#BCBCBC',
   },
   textContainer: {
     marginHorizontal: 10,
   },
   orContinueText: {
     fontSize: 12,
-    color: "#BCBCBC",
+    color: '#BCBCBC',
   },
   socialIconsContainer: {
     flexDirection: 'row',
@@ -324,17 +335,20 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   signupContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+
     top: 120,
   },
   signupText: {
     fontSize: 12,
+    color: 'black',
   },
   signupLink: {
     fontSize: 14,
     color: bgColor.primary_color,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginHorizontal: 3,
   },
   errorText: {

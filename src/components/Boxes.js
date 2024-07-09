@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'flex-start',
     padding: 10,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    borderRadius: 10,
+    margin: 5,
+    borderWidth: 1, // Add border width
     borderRadius: 10,
     margin: 5,
     borderWidth: 1, // Add border width
@@ -50,9 +55,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 5,
+    color: 'black',
   },
   description: {
     fontSize: 12,
     textAlign: 'flex-start',
+    color: 'black',
   },
 });

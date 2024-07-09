@@ -19,7 +19,7 @@ const AcceptedOrders = ({ navigation }) => {
           />
         </View>
         <View style={styles.infoContainer}>
-          <Text style={{ fontSize: 20, fontWeight: "700", marginBottom: 8 }}>
+          <Text style={{ fontSize: 20, fontWeight: "700", marginBottom: 8, color:'black' }}>
             Marriage Contracts
           </Text>
           <Text style={styles.text}>
@@ -36,14 +36,14 @@ const AcceptedOrders = ({ navigation }) => {
             source={require("../../assets/tick.png")}
             style={styles.tickIcon}
           />
-          <Text>Attached the Approved legal Stamp</Text>
+          <Text style={{color:'black'}}>Attached the Approved legal Stamp</Text>
         </View>
         <View style={styles.descriptionItem}>
           <Image
             source={require("../../assets/tick.png")}
             style={styles.tickIcon}
           />
-          <Text>
+          <Text style={{color:'black'}}>
             Shipping to:{" "}
             <Text style={styles.highlightedText}>
               16 Yaho Street 4538808 Jerusalem
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20,
     backgroundColor: "#fff",
-    marginTop: 30,
+    marginTop: 0,
   },
   text: {
     color: "#777777",
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     marginBottom: 10,
+    color:'black'
   },
   orderDetail: {
     flexDirection: "row",
@@ -152,6 +153,7 @@ const styles = StyleSheet.create({
   orderDetailText: {
     fontSize: 16,
     fontWeight: "300",
+    color:'black'
   },
   orderDetailPrice: {
     fontSize: 16,
@@ -160,6 +162,7 @@ const styles = StyleSheet.create({
   totalAmountText: {
     fontSize: 18,
     fontWeight: "700",
+    color:'black'
   },
   totalAmountPrice: {
     fontSize: 16,

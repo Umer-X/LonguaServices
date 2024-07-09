@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "100%",
-    marginVertical: 0,
+    bottom: 40,
+    marginVertical: -10,
     paddingHorizontal: 25,
   },
   leftText: {
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 100,
-    marginBottom: 20,
-    top: 330,
+    marginBottom: 0,
+    top: 337,
   },
   buttonText: {
     color: "white",

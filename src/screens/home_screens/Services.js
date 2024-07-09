@@ -63,11 +63,13 @@ const Services = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderWithArrow
+    <View style={{right:15,}}>
+    <HeaderWithArrow 
         arrowIcon={require("../../assets/backArrow.png")}
         headerContent="Legal Translation"
         onPressArrow={() => navigation.goBack()}
       />
+    </View>
       <View style={styles.boxesContainer}>
         {boxesData.map((box, index) => (
           <Boxes
@@ -101,20 +103,20 @@ export default Services;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
     padding: 10,
+    backgroundColor: 'white',
   },
   boxesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     marginTop: 40,
-    top: 10,
+    top: -30,
   },
   buttonContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: -40,
   },
   button: {
     width: '80%',

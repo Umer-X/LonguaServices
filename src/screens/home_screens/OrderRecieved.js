@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
+    bottom: 30,
   },
   image: {
     width: 288,
@@ -58,8 +59,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   descriptionContainer: {
-    paddingHorizontal: 10,
-    bottom: 20,
+    paddingHorizontal: 0,
+    bottom: 50,
+    opacity:0.5,
     marginBottom: 10,
   },
   description: {
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 100,
-    top: 70,
+    top: 60,
   
   },
   buttonText: {

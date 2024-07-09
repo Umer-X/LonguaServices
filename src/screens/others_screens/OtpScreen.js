@@ -78,8 +78,9 @@ const styles = StyleSheet.create({
   description: {
     fontWeight: "500",
     fontSize: 15,
-    marginHorizontal: 30,
-    marginTop: 30,
+    marginHorizontal: 28,
+    color: 'black',
+    marginTop: -20,
   },
   otpContainer: {
     flexDirection: 'row',

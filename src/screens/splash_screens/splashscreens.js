@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 0,
     width: windowWidth,
+    bottom: 30,
   },
   skipContainer: {
     position: 'absolute',
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+    color:'black',
     marginBottom: 10,
   },
   description: {

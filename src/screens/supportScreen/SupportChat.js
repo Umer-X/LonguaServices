@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Image, KeyboardAvoidingView, Platform, Keyboard, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Dimensions
+} from 'react-native';
 import HeaderWithArrow from '../../components/ArrowHeader';
 import { bgColor } from '../../utils/colors/main_color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,8 +31,6 @@ const SupportChat = ({ navigation }) => {
   useEffect(() => {
     loadMessages();
   }, []);
-   
-      // Handle Save msgs
 
   const saveMessages = async (newMessages) => {
     try {
@@ -41,8 +52,6 @@ const SupportChat = ({ navigation }) => {
     }
   };
 
-      //Hnadle Send msgs
-
   const handleSendMessage = (message) => {
     if (message.trim()) {
       const newMessages = [...messages, { text: message, sender: 'user' }];
@@ -52,8 +61,6 @@ const SupportChat = ({ navigation }) => {
       setInputText('');
     }
   };
-
-      // Handle Clear Chat
 
   const handleClearChat = async () => {
     try {
@@ -83,7 +90,10 @@ const SupportChat = ({ navigation }) => {
               <Text style={styles.clearButtonText}>Clear Chat</Text>
             </TouchableOpacity>
           </View>
-          <ScrollView style={{ top: 22 }} contentContainerStyle={styles.chatContainer} keyboardShouldPersistTaps="handled">
+          <ScrollView
+            contentContainerStyle={styles.chatContainer}
+            keyboardShouldPersistTaps="handled"
+          >
             {showPredefinedMessages && (
               <View style={styles.predefinedMessagesContainer}>
                 {predefinedMessages.map((message, index) => (
@@ -96,7 +106,13 @@ const SupportChat = ({ navigation }) => {
               </View>
             )}
             {messages.map((message, index) => (
-              <View key={index} style={[styles.messageContainer, message.sender === 'user' && styles.userMessage]}>
+              <View
+                key={index}
+                style={[
+                  styles.messageContainer,
+                  message.sender === 'user' && styles.userMessage
+                ]}
+              >
                 <Text style={styles.messageText}>{message.text}</Text>
               </View>
             ))}
@@ -110,7 +126,10 @@ const SupportChat = ({ navigation }) => {
               onChangeText={setInputText}
               onSubmitEditing={() => handleSendMessage(inputText)}
             />
-            <TouchableOpacity style={styles.sendButton} onPress={() => handleSendMessage(inputText)}>
+            <TouchableOpacity
+              style={styles.sendButton}
+              onPress={() => handleSendMessage(inputText)}
+            >
               <Image source={require('../../assets/share.png')} style={styles.sendIcon} />
             </TouchableOpacity>
           </View>
@@ -132,15 +151,18 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    
+    padding: 0,
+    paddingHorizontal: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   clearButton: {
-    marginRight: 90,
-    right: 5,
-    top: 20,
-   
-    borderRadius: 15,
     padding: 5,
+    bottom:20,
+    left:-20,
+    borderRadius: 15,
+    backgroundColor: '#f0f0f0',
   },
   clearButtonText: {
     fontSize: 14,
@@ -151,7 +173,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'flex-start',
     paddingHorizontal: 10,
-    paddingVertical: 20, 
+    paddingVertical: 20,
   },
   predefinedMessagesContainer: {
     justifyContent: 'center',
@@ -164,7 +186,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 10,
     width: Dimensions.get('window').width * 0.9,
-    height: Dimensions.get('window').height * 0.1, // Ensuring messages have a fixed height
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -177,7 +198,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0e0e0',
     padding: 15,
     borderRadius: 10,
-    marginVertical: 5, // Adjusted margin to avoid overlap
+    marginVertical: 5,
     alignSelf: 'flex-start',
     maxWidth: '80%',
   },
@@ -191,7 +212,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10, // Reduced padding for better UI
+    padding: 10,
     borderTopWidth: 1,
     borderColor: '#f9f9f9',
     backgroundColor: '#fff',

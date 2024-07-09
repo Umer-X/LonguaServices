@@ -10,7 +10,7 @@ const AboutLonguaServices = ({ navigation }) => {
         headerContent="About Longua Services"
         onPressArrow={() => navigation.goBack()}
       />
-      <ScrollView style={{top:30,}} contentContainerStyle={styles.contentContainer}>
+      <ScrollView style={{top:0,}} contentContainerStyle={styles.contentContainer}>
         <Text style={styles.paragraph}>
           LinguaService is a leading provider of professional translation and
           document services, dedicated to helping individuals and businesses

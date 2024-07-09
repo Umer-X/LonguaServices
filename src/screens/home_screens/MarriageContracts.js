@@ -36,11 +36,13 @@ const MarriageContracts = () => {
 
   return (
     <View style={styles.container}>
+        <View style={{right:20,}}>
       <HeaderWithArrow
         arrowIcon={require("../../assets/backArrow.png")}
         headerContent="Marriage Contracts"
         onPressArrow={() => navigation.goBack()}
       />
+      </View>
       <TouchableOpacity style={styles.uploadButton} onPress={handleFileUpload}>
         <Text style={styles.uploadButtonText}>Upload Your File</Text>
       </TouchableOpacity>
@@ -108,17 +110,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    padding: 10,
+    paddingHorizontal: 15,
+   
   },
   uploadButton: {
-    width: "95%",
-    height: 131,
+    width: "100%",
+    height: 130,
     backgroundColor: "#F5F5F5",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    marginTop: 40,
+    marginTop: 0,
     alignSelf: "center",
+    
   },
   uploadButtonText: {
     color: "gray",
@@ -127,13 +131,13 @@ const styles = StyleSheet.create({
   },
   checkContainer: {
     flexDirection: "row",
+    
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: 20,
+    marginTop: 12,
     padding: 15,
     borderRadius: 10,
     backgroundColor: "#F5F5F5",
-    marginHorizontal: 20,
   },
   checkText: {
     fontSize: 16,
@@ -144,23 +148,21 @@ const styles = StyleSheet.create({
     height: 24,
   },
   optionsContainer: {
-    marginTop: 30,
-    marginHorizontal: 20,
+    marginTop: 20,
   },
   optionItem: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 10,
+    marginBottom: -5,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "#F5F5F5",
+    
   },
   optionText: {
     color: "black",
     fontSize: 16,
-    fontWeight: "400",
     marginLeft: 10,
+    flex: 1,
   },
   button: {
     width: "80%",
@@ -168,10 +170,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#153518",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 100,
+    borderRadius: 30,
+    alignSelf: "center",
     position: 'absolute',
-    bottom: 20,
-    alignSelf: 'center',
+    bottom: 70,
   },
   buttonText: {
     color: "white",

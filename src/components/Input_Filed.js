@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
     height: 60,
     paddingHorizontal: 0,
     marginBottom: 16,
+    paddingVertical: 0,
+    paddingHorizontal: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
   },
   icon: {
     width: 22,

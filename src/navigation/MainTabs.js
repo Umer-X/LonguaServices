@@ -1,7 +1,7 @@
 // src/navigation/MainTabs.js
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Image } from "react-native";
 import Home from "../screens/home_screens/Home";
 import Order from "../screens/orderScreens/Order";
 import Support from "../screens/supportScreen/Support";
@@ -10,29 +10,44 @@ import { bgColor } from "../utils/colors/main_color";
 
 const Tab = createBottomTabNavigator();
 
+export const mainTabsIcons = [
+  {
+    image: require('../assets/main-tabs/home-tab.png'),
+  },
+  {
+    image: require('../assets/main-tabs/order-tab.png'),
+  },
+  {
+    image: require('../assets/main-tabs/support-tab.png'),
+  },
+  {
+    image: require('../assets/main-tabs/account-tab.png'),
+  }
+];
+
 function MainTabs() {
   return (
     <Tab.Navigator 
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          let iconName;
+          let iconSource;
 
           switch (route.name) {
             case 'Home':
-              iconName = 'home-outline';
+              iconSource = mainTabsIcons[0].image;
               break;
             case 'Order':
-              iconName = 'cart-outline';
+              iconSource = mainTabsIcons[1].image;
               break;
             case 'Support':
-              iconName = 'help-circle-outline';
+              iconSource = mainTabsIcons[2].image;
               break;
             case 'Account':
-              iconName = 'person-outline';
+              iconSource = mainTabsIcons[3].image;
               break;
           }
 
-          return <Icon name={iconName} size={size} color={color} />;
+          return <Image source={iconSource} style={{ width: size, height: size, tintColor: color }} />;
         },
         tabBarActiveTintColor: bgColor.primary_color,
         tabBarInactiveTintColor: 'gray',

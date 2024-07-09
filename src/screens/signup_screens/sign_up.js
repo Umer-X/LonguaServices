@@ -153,7 +153,7 @@ const SignUp = ({ navigation }) => {
               </View>
             </View>
             <View style={styles.signup_in_login}>
-              <Text style={{ fontSize: 12 }}>Already have an Account?</Text>
+              <Text style={{ fontSize: 12,  color: 'black', }}>Already have an Account?</Text>
               <Pressable onPress={() => navigation.navigate('login_email')}>
                 <Text style={styles.signinText}>Sign-in</Text>
               </Pressable>
@@ -175,19 +175,19 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 10,
   },
   inputContainer: {
     width: '100%',
     alignItems: 'center',
-    marginBottom: 20,
   },
   subtitle: {
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop:40,
     marginBottom: 20,
+    color: 'black',
   },
   textRow: {
     width: '100%',
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 20,
-    bottom:30,
+    bottom: 30,
     width: '70%',
   },
   line: {
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
-    bottom:30,
+    bottom: 30,
   },
   socialIcons: {
     width: 90,
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
   signup_in_login: {
     flexDirection: 'row',
     alignItems: 'center',
-    bottom:30,
+    bottom: 30,
   },
   signinText: {
     fontSize: 14,

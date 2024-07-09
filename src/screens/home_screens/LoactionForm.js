@@ -8,11 +8,13 @@ const LocationForm = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+       <View style={{right:25,}}>
       <HeaderWithArrow
         arrowIcon={require('../../assets/backArrow.png')}
         headerContent="Location Form"
         onPressArrow={() => navigation.goBack()}
       />
+      </View>
       <View style={styles.formContainer}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -83,10 +85,10 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: 'white',
-    padding: 20,
+    paddingHorizontal: 20,
   },
   formContainer: {
-    marginTop: 40,
+    marginTop: 0,
   },
   inputContainer: {
     backgroundColor: 'white',
@@ -146,10 +148,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    width: '90%',
-    left: 17,
-    top: 80,
+    width: '80%',
+    marginBottom: 30,
+    marginLeft: '10%',
     marginTop: 20,
+    top: 70,
+    elevation: 5,
+  },
+  arrowIcon: {
   },
   buttonText: {
     color: 'white',

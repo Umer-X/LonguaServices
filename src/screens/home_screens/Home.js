@@ -127,7 +127,6 @@ const Home = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    paddingTop: 30,
     backgroundColor: 'white',
     alignItems: 'center',
   },
@@ -138,7 +137,8 @@ const styles = StyleSheet.create({
     width: 348,
     height: 150,
     borderRadius: 20,
-    marginTop: 10,
+    marginTop: 20,
+    
   },
   textContainer: {
     flex: 1,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 20,
+    marginTop: 0,
   },
   logo: {
     width: 120,
@@ -202,10 +202,11 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 22,
+    color:'black',
     fontWeight: 'bold',
     right: 50,
-    marginBottom: 0,
-    bottom: 10,
+    marginBottom: -20,
+    bottom: 30,
   },
   categoryContainer: {
     paddingHorizontal: 0,

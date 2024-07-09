@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     gap: 30,
     paddingHorizontal: 20,
     marginTop: 20,
-    top: 40,
+    top: 0,
   },
   languageItem: {
     alignItems: 'center',

@@ -23,12 +23,13 @@ import OrderConfirm from '../screens/accountScreen/OrderConfirm';
 import OrderDetails from "../screens/orderScreens/OrderDetails";
 
 const Stack = createNativeStackNavigator();
+  
 
 function StackNavigator() {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF"  />
-      <Stack.Navigator initialRouteName="SplashScreens" screenOptions={{ headerShown: false }} >
+      <Stack.Navigator initialRouteName= "SplashScreens" screenOptions={{ headerShown: false }} >
         <Stack.Screen name="SplashScreens" component={SplashScreens} />
         <Stack.Screen name="login_email" component={LoginScreens} />
         <Stack.Screen name="sign_up" component={SignUp} />

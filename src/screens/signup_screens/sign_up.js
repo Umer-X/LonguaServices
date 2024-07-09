@@ -20,6 +20,7 @@ import {
   clearErrors,
 } from "../../redux/signUpSlice";
 import Input_Field from '../../components/Input_Filed';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { bgColor } from '../../utils/colors/main_color';
 
 const SignUp = ({ navigation }) => {
@@ -33,7 +34,7 @@ const SignUp = ({ navigation }) => {
 
   const handleSubmit = async () => {
     dispatch(validateSignUpForm());
-
+  
     const currentState = {
       fullName,
       email,
@@ -42,6 +43,7 @@ const SignUp = ({ navigation }) => {
       confirmPassword,
       errors,
     };
+  
     if (
       Object.keys(currentState.errors).length === 0 &&
       fullName &&
@@ -50,10 +52,22 @@ const SignUp = ({ navigation }) => {
       password &&
       confirmPassword
     ) {
-      console.log("Navigating to home screen");
-      navigation.navigate("MainTabs");
+      try {
+        const userData = {
+          fullName,
+          email,
+          phoneNumber,
+          password,
+        };
+        await AsyncStorage.setItem('user', JSON.stringify(userData));
+        console.log("User registered and data saved to AsyncStorage");
+        navigation.navigate("MainTabs");
+      } catch (error) {
+        console.log("Error saving data to AsyncStorage: ", error);
+      }
     }
   };
+  
 
   return (
     <KeyboardAvoidingView

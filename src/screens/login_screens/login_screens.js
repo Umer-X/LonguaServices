@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import Input_Field from '../../components/Input_Filed.js';
 import {bgColor} from '../../utils/colors/main_color.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector, useDispatch} from 'react-redux';
 import {setField, clearErrors} from '../../redux/loginSlice.js';
 
@@ -86,8 +87,122 @@ const LoginScreens = ({navigation}) => {
     dispatch(clearErrors({field}));
   };
 
-  const handleSubmit = () => {
-    navigation.navigate('MainTabs');
+  const handleSubmit = async () => {
+    let valid = true;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (currentScreenIndex === 0) {
+      if (!email || email.trim().length === 0) {
+        valid = false;
+        dispatch(
+          setField({
+            field: 'errors',
+            value: {...errors, email: 'Email is required'},
+          }),
+        );
+      } else if (!emailRegex.test(email)) {
+        valid = false;
+        dispatch(
+          setField({
+            field: 'errors',
+            value: {...errors, email: 'Invalid email format'},
+          }),
+        );
+      }
+
+      if (!password || password.trim().length === 0) {
+        valid = false;
+        dispatch(
+          setField({
+            field: 'errors',
+            value: {...errors, password: 'Password is required'},
+          }),
+        );
+      } else if (password.length < 8) {
+        valid = false;
+        dispatch(
+          setField({
+            field: 'errors',
+            value: {
+              ...errors,
+              password: 'Password must be at least 8 characters long',
+            },
+          }),
+        );
+      }
+    } else {
+      if (!phoneNumber || phoneNumber.trim().length === 0) {
+        valid = false;
+        dispatch(
+          setField({
+            field: 'errors',
+            value: {...errors, phoneNumber: 'Phone number is required'},
+          }),
+        );
+      }
+
+      if (!password || password.trim().length === 0) {
+        valid = false;
+        dispatch(
+          setField({
+            field: 'errors',
+            value: {...errors, password: 'Password is required'},
+          }),
+        );
+      } else if (password.length < 8) {
+        valid = false;
+        dispatch(
+          setField({
+            field: 'errors',
+            value: {
+              ...errors,
+              password: 'Password must be at least 8 characters long',
+            },
+          }),
+        );
+      }
+    }
+
+    if (valid) {
+      try {
+        const userDataString = await AsyncStorage.getItem('user');
+        const userData = JSON.parse(userDataString);
+
+        if (
+          (currentScreenIndex === 0 &&
+            userData.email === email &&
+            userData.password === password) ||
+          (currentScreenIndex === 1 &&
+            userData.phoneNumber === phoneNumber &&
+            userData.password === password)
+        ) {
+          console.log('User authenticated successfully');
+          navigation.navigate('MainTabs');
+        } else {
+          console.log('Invalid login credentials');
+          if (currentScreenIndex === 0) {
+            dispatch(
+              setField({
+                field: 'errors',
+                value: {...errors, email: 'Invalid email or password'},
+              }),
+            );
+          } else {
+            dispatch(
+              setField({
+                field: 'errors',
+                value: {
+                  ...errors,
+                  phoneNumber: 'Invalid phone number or password',
+                },
+              }),
+            );
+          }
+        }
+      } catch (error) {
+        console.log('Error retrieving data from AsyncStorage: ', error);
+      }
+    }
   };
 
   const getFieldValue = field => {
@@ -202,6 +317,8 @@ const LoginScreens = ({navigation}) => {
   );
 };
 
+export default LoginScreens;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -218,8 +335,7 @@ const styles = StyleSheet.create({
     top: 30,
   },
   textContainer: {
-    bottom: 70,
-    backgroundColor: 'red',
+    marginBottom: 40,
   },
   title: {
     fontSize: 23,
@@ -236,15 +352,13 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '100%',
-
-    top: 20,
+    top: -30,
   },
   subtitle: {
     fontSize: 22,
     fontWeight: '700',
     textAlign: 'flex-start',
     marginBottom: 40,
-    top: 20,
   },
   fieldContainer: {
     marginBottom: 20,
@@ -285,7 +399,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 3,
     marginVertical: 10,
-    top: 50,
+    top: -10,
   },
   buttonText: {
     fontSize: 16,
@@ -296,15 +410,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 0,
-    top: 50,
+    top: -10,
   },
   line: {
     height: 1,
+    bottom: 20,
     width: 60,
     backgroundColor: '#BCBCBC',
-  },
-  textContainer: {
-    marginHorizontal: 10,
   },
   orContinueText: {
     fontSize: 12,
@@ -315,7 +427,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 0,
     padding: 0,
-    top: 70,
+    top: -20,
   },
   socialIcons: {
     width: 90,
@@ -338,8 +450,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-
-    top: 120,
+    top: 40,
   },
   signupText: {
     fontSize: 12,
@@ -354,7 +465,8 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginTop: 10,
+    marginBottom: 5,
+    fontSize: 12,
+    left: 10,
   },
 });
-
-export default LoginScreens;

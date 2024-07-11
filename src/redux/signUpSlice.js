@@ -1,34 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { validateFormFields } from "../validation";
+import {createSlice} from '@reduxjs/toolkit';
+import {validateFormFields} from '../validation';
 
 const initialSignUpState = {
-  fullName: "",
-  email: "",
-  phoneNumber: "",
-  password: "",
-  confirmPassword: "",
+  fullName: '',
+  email: '',
+  phoneNumber: '',
+  password: '',
+  confirmPassword: '',
   errors: {},
   user: null,
 };
 
 const signUpSlice = createSlice({
-  name: "signUp",
+  name: 'signUp',
   initialState: initialSignUpState,
   reducers: {
     setField: (state, action) => {
-      const { field, value } = action.payload;
+      const {field, value} = action.payload;
       state[field] = value;
     },
-    validateSignUpForm: (state) => {
+    validateSignUpForm: state => {
       const errors = validateFormFields(state);
       state.errors = errors;
     },
     clearErrors: (state, action) => {
-      const { field } = action.payload;
+      const {field} = action.payload;
       if (field) {
-        state.errors[field] = null; 
+        state.errors[field] = null;
       } else {
-        state.errors = {}; 
+        state.errors = {};
       }
     },
     setUser: (state, action) => {
@@ -37,7 +37,8 @@ const signUpSlice = createSlice({
   },
 });
 
-export const { setField, validateSignUpForm, clearErrors, setUser } = signUpSlice.actions;
+export const {setField, validateSignUpForm, clearErrors, setUser} =
+  signUpSlice.actions;
 
 const signUpReducer = signUpSlice.reducer;
 

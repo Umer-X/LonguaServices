@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "232320780340",
+    "project_id": "loungaservices",
+    "storage_bucket": "loungaservices.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232320780340:android:4f236dfbd5cfc921a96261",
+        "android_client_info": {
+          "package_name": "com.longuaservices"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPzhb2w4G5t6sAQhOXORAh4xdPN8XSw_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

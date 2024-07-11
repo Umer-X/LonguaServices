@@ -1,22 +1,29 @@
-package com.longuaservices
+package com.longuaservices // Replace with your package name
 
 import com.facebook.react.ReactActivity
+import android.content.Intent
 import com.facebook.react.ReactActivityDelegate
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
-import com.facebook.react.defaults.DefaultReactActivityDelegate
+import com.facebook.react.ReactRootView
+import com.reactnativegooglesignin.RNGoogleSigninPackage // Ensure this import is correct
 
 class MainActivity : ReactActivity() {
 
-  /**
-   * Returns the name of the main component registered from JavaScript. This is used to schedule
-   * rendering of the component.
-   */
-  override fun getMainComponentName(): String = "longuaservices"
+  private val mCallbackManager = CallbackManager.Factory.create()
 
-  /**
-   * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
-   * which allows you to enable New Architecture with a single boolean flags [fabricEnabled]
-   */
-  override fun createReactActivityDelegate(): ReactActivityDelegate =
-      DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+  override fun getMainComponentName(): String {
+    return "longuaservices"
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    mCallbackManager.onActivityResult(requestCode, resultCode, data)
+  }
+
+  override fun createReactActivityDelegate(): ReactActivityDelegate {
+    return object : ReactActivityDelegate(this, mainComponentName) {
+      override fun createRootView(): ReactRootView {
+        return ReactRootView(context)
+      }
+    }
+  }
 }

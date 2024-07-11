@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   email: '',
@@ -28,6 +28,6 @@ const loginSlice = createSlice({
   },
 });
 
-export const { setField, clearErrors, setUser } = loginSlice.actions;
+export const {setField, clearErrors, setUser} = loginSlice.actions;
 
 export default loginSlice.reducer;

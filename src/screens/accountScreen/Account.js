@@ -1,14 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Platform, Dimensions } from 'react-native';
-import { useSelector } from 'react-redux';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Platform,
+  Dimensions,
+} from 'react-native';
+import {useSelector} from 'react-redux';
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
-const Account = ({ navigation }) => {
+const Account = ({navigation}) => {
   const signUpUser = useSelector(state => state.signUp.user);
   const loginUser = useSelector(state => state.login.user);
   const user = signUpUser || loginUser;
-
 
   return (
     <View style={styles.container}>
@@ -17,10 +24,15 @@ const Account = ({ navigation }) => {
       </View>
       <View style={styles.profileContainer}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={require('../../assets/profile-pic.jpeg')} />
+          <Image
+            style={styles.image}
+            source={require('../../assets/profile-pic.jpeg')}
+          />
         </View>
         <View style={styles.profileTextContainer}>
-          <Text style={styles.profileName}>{user ? user.fullName : 'Guest'}</Text>
+          <Text style={styles.profileName}>
+            {user ? user.fullName : 'Guest'}
+          </Text>
           <Text style={styles.editAccount}>Edit Account</Text>
         </View>
       </View>
@@ -33,8 +45,8 @@ const Account = ({ navigation }) => {
             <Text style={styles.checkText}>Settings</Text>
           </View>
           <TouchableOpacity>
-            <Image 
-              source={require("../../assets/arrowRight.png")}
+            <Image
+              source={require('../../assets/arrowRight.png')}
               style={styles.arrowIcon}
             />
           </TouchableOpacity>
@@ -42,15 +54,16 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-            <Image 
-              source={require("../../assets/account-icons/orders-icon.png")}
+            <Image
+              source={require('../../assets/account-icons/orders-icon.png')}
               style={styles.arrowIcon}
             />
             <Text style={styles.checkText}>My Orders</Text>
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate('accepted_orders')} >
+          <TouchableOpacity
+            onPress={() => navigation.navigate('accepted_orders')}>
             <Image
-              source={require("../../assets/arrowRight.png")}
+              source={require('../../assets/arrowRight.png')}
               style={styles.arrowIcon}
             />
           </TouchableOpacity>
@@ -58,15 +71,16 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-            <Image 
-              source={require("../../assets/account-icons/privacy-policy.png")}
+            <Image
+              source={require('../../assets/account-icons/privacy-policy.png')}
               style={styles.arrowIcon}
             />
             <Text style={styles.checkText}>Privacy Policy</Text>
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate('privacy_policy')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('privacy_policy')}>
             <Image
-              source={require("../../assets/arrowRight.png")}
+              source={require('../../assets/arrowRight.png')}
               style={styles.arrowIcon}
             />
           </TouchableOpacity>
@@ -74,27 +88,28 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-            <Image 
-              source={require("../../assets/account-icons/about-icon.png")}
+            <Image
+              source={require('../../assets/account-icons/about-icon.png')}
               style={styles.arrowIcon}
             />
             <Text style={styles.checkText}>About Lingua Services</Text>
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate('about_longua_services')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('about_longua_services')}>
             <Image
-              source={require("../../assets/arrowRight.png")}
+              source={require('../../assets/arrowRight.png')}
               style={styles.arrowIcon}
             />
-          </TouchableOpacity> 
+          </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity style={styles.logoutContainer}
-        onPress={() => navigation.navigate('login_email')}
-      >
+      <TouchableOpacity
+        style={styles.logoutContainer}
+        onPress={() => navigation.navigate('login_email')}>
         <Image
-          source={require("../../assets/log-out.png")}
+          source={require('../../assets/log-out.png')}
           style={styles.arrowIcon}
-        />    
+        />
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </View>
@@ -147,25 +162,25 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   checkContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginTop: 5,
     paddingVertical: 15,
     paddingHorizontal: 10,
     borderRadius: 5,
-    borderBottomColor: "#e8e9ed",
+    borderBottomColor: '#e8e9ed',
     borderBottomWidth: 1,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
   iconTextContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   checkText: {
     fontSize: 16,
-    color: "black",
-    fontWeight: "500",
+    color: 'black',
+    fontWeight: '500',
     marginLeft: 10,
   },
   arrowIcon: {
@@ -173,16 +188,16 @@ const styles = StyleSheet.create({
     height: 24,
   },
   logoutContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     marginTop: '15%',
-    padding:15,
+    padding: 15,
   },
   logoutText: {
     fontSize: 18,
-    color: "red",
-    fontWeight: "500",
+    color: 'red',
+    fontWeight: '500',
     marginLeft: 10,
   },
 });

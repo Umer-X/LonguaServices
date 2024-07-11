@@ -1,51 +1,64 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Image, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native';
-import { bgColor } from '../../utils/colors/main_color';
+import React, {useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import {bgColor} from '../../utils/colors/main_color';
 import Input_Field from '../../components/Input_Filed';
 import Boxes from '../../components/Boxes';
-import { LinearGradient} from 'react-native-linear-gradient'
-
+import {LinearGradient} from 'react-native-linear-gradient';
 
 const Home = ({navigation}) => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const categories = ['All', 'Legal Translation', 'Legal Support', 'Document Services'];
+  const categories = [
+    'All',
+    'Legal Translation',
+    'Legal Support',
+    'Document Services',
+  ];
 
-  const renderCategory = ({ item }) => (
+  const renderCategory = ({item}) => (
     <TouchableOpacity
       onPress={() => setActiveCategory(item)}
       style={[
         styles.categoryBox,
         {
-          backgroundColor: item === activeCategory ? bgColor.primary_color : '#FFF',
-          padding: item === activeCategory? 12 : 10,
+          backgroundColor:
+            item === activeCategory ? bgColor.primary_color : '#FFF',
+          padding: item === activeCategory ? 12 : 10,
         },
-      ]}
-    >
+      ]}>
       <Text
         style={[
           styles.categoryText,
           {
             color: item === activeCategory ? '#FFF' : bgColor.primary_color,
           },
-        ]}
-      >
+        ]}>
         {item}
       </Text>
     </TouchableOpacity>
   );
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}>
       <View style={styles.logoContainer}>
         <View style={styles.logo}>
           <Image
-            source={require("../../assets/logo.png")}
+            source={require('../../assets/logo.png')}
             style={styles.logoImage}
           />
         </View>
         <View style={styles.bellIcon}>
           <Image
-            source={require("../../assets/bell.png")}
+            source={require('../../assets/bell.png')}
             style={styles.bellImage}
           />
         </View>
@@ -56,13 +69,12 @@ const Home = ({navigation}) => {
           placeholder="What are you Looking for ?"
         />
       </View>
-      
+
       <LinearGradient
         colors={['#153518', '#4C6B4E']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.greenBox}
-      >
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 1}}
+        style={styles.greenBox}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>LinguaService: Bridging Worlds</Text>
           <Text style={styles.description}>
@@ -72,21 +84,21 @@ const Home = ({navigation}) => {
         </View>
         <View style={styles.imageContainer}>
           <Image
-            source={require("../../assets/rectangle.png")}
+            source={require('../../assets/rectangle.png')}
             style={styles.image}
           />
         </View>
       </LinearGradient>
-      
+
       <Image
-        source={require("../../assets/default.png")}
+        source={require('../../assets/default.png')}
         style={styles.defaultImage}
       />
       <Text style={styles.sectionTitle}>Explore our Services:</Text>
       <FlatList
         data={categories}
         renderItem={renderCategory}
-        keyExtractor={(item) => item}
+        keyExtractor={item => item}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.categoryContainer}
@@ -95,7 +107,7 @@ const Home = ({navigation}) => {
         <Boxes
           image={require('../../assets/boxes/box1.png')}
           title="Legal Translation"
-          onPress=  {()=>navigation.navigate("services")}      
+          onPress={() => navigation.navigate('services')}
           description="Expert translation of legal documents with precision."
         />
         <Boxes
@@ -112,13 +124,12 @@ const Home = ({navigation}) => {
           description=" Document  management services."
           targetScreen={'services'}
         />
-         <Boxes
+        <Boxes
           image={require('../../assets/boxes/box6.png')}
           title="Legal Support"
           description="Professional legal support services."
           targetScreen={'services'}
         />
-       
       </View>
     </ScrollView>
   );
@@ -138,7 +149,6 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 20,
     marginTop: 20,
-    
   },
   textContainer: {
     flex: 1,
@@ -198,11 +208,11 @@ const styles = StyleSheet.create({
     height: 100,
     bottom: 25,
     resizeMode: 'contain',
-    marginBottom: -10, 
+    marginBottom: -10,
   },
   sectionTitle: {
     fontSize: 22,
-    color:'black',
+    color: 'black',
     fontWeight: 'bold',
     right: 50,
     marginBottom: -20,
@@ -225,7 +235,7 @@ const styles = StyleSheet.create({
   },
   boxesRow: {
     flexDirection: 'row',
-    justifyContent:'space-around',
+    justifyContent: 'space-around',
     width: '100%',
     marginTop: 10,
     marginBottom: 10,

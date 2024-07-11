@@ -70,7 +70,7 @@ const loginScreensData = [
 
 const LoginScreens = ({navigation}) => {
   const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const {email, phoneNumber, password, errors} = useSelector(
     state => state.login,
@@ -82,7 +82,7 @@ const LoginScreens = ({navigation}) => {
 
   const handleAlternate = () => {
     setCurrentScreenIndex(currentScreenIndex === 0 ? 1 : 0);
-  };  
+  };
 
   const handleInputChange = (field, value) => {
     dispatch(setField({field, value}));
@@ -93,7 +93,7 @@ const LoginScreens = ({navigation}) => {
     let valid = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    setLoading(true); 
+    setLoading(true);
 
     if (currentScreenIndex === 0) {
       if (!email || email.trim().length === 0) {
@@ -210,7 +210,7 @@ const LoginScreens = ({navigation}) => {
         setLoading(false);
       }
     } else {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 

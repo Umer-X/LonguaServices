@@ -10,12 +10,13 @@ import {
   KeyboardAvoidingView,
   Pressable,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import Input_Field from '../../components/Input_Filed.js';
 import {bgColor} from '../../utils/colors/main_color.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector, useDispatch} from 'react-redux';
-import {setField, clearErrors} from '../../redux/loginSlice.js';
+import {setField, clearErrors, setUser} from '../../redux/loginSlice.js';
 
 const windowHeight = Dimensions.get('screen').height;
 const windowWidth = Dimensions.get('screen').width;
@@ -69,6 +70,7 @@ const loginScreensData = [
 
 const LoginScreens = ({navigation}) => {
   const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
+  const [loading, setLoading] = useState(false); 
   const dispatch = useDispatch();
   const {email, phoneNumber, password, errors} = useSelector(
     state => state.login,
@@ -80,7 +82,7 @@ const LoginScreens = ({navigation}) => {
 
   const handleAlternate = () => {
     setCurrentScreenIndex(currentScreenIndex === 0 ? 1 : 0);
-  };
+  };  
 
   const handleInputChange = (field, value) => {
     dispatch(setField({field, value}));
@@ -90,6 +92,8 @@ const LoginScreens = ({navigation}) => {
   const handleSubmit = async () => {
     let valid = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    setLoading(true); 
 
     if (currentScreenIndex === 0) {
       if (!email || email.trim().length === 0) {
@@ -177,6 +181,7 @@ const LoginScreens = ({navigation}) => {
             userData.password === password)
         ) {
           console.log('User authenticated successfully');
+          dispatch(setUser(userData));
           navigation.navigate('MainTabs');
         } else {
           console.log('Invalid login credentials');
@@ -201,7 +206,11 @@ const LoginScreens = ({navigation}) => {
         }
       } catch (error) {
         console.log('Error retrieving data from AsyncStorage: ', error);
+      } finally {
+        setLoading(false);
       }
+    } else {
+      setLoading(false); 
     }
   };
 
@@ -231,7 +240,7 @@ const LoginScreens = ({navigation}) => {
               Welcome to
               <Text style={{color: bgColor.primary_color}}>
                 {' '}
-                LinguaServices
+                Longua Services
               </Text>
             </Text>
             <Text style={styles.description}>
@@ -276,7 +285,11 @@ const LoginScreens = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text style={styles.buttonText}>Sign In</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color="#ffffff" />
+            ) : (
+              <Text style={styles.buttonText}>Sign In</Text>
+            )}
           </TouchableOpacity>
           <View style={styles.orContinueContainer}>
             <View style={styles.line} />

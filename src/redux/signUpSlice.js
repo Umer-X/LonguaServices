@@ -8,6 +8,7 @@ const initialSignUpState = {
   password: "",
   confirmPassword: "",
   errors: {},
+  user: null,
 };
 
 const signUpSlice = createSlice({
@@ -25,15 +26,18 @@ const signUpSlice = createSlice({
     clearErrors: (state, action) => {
       const { field } = action.payload;
       if (field) {
-        state.errors[field] = null; // Reset specific field error
+        state.errors[field] = null; 
       } else {
-        state.errors = {}; // Clear all errors
+        state.errors = {}; 
       }
+    },
+    setUser: (state, action) => {
+      state.user = action.payload;
     },
   },
 });
 
-export const { setField, validateSignUpForm, clearErrors } = signUpSlice.actions;
+export const { setField, validateSignUpForm, clearErrors, setUser } = signUpSlice.actions;
 
 const signUpReducer = signUpSlice.reducer;
 

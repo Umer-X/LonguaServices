@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Platform, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { useSelector } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 
 const Account = ({ navigation }) => {
-  const handleNavigateToLanguages = () => {
-    navigation.navigate("languague");
-  };
+  const signUpUser = useSelector(state => state.signUp.user);
+  const loginUser = useSelector(state => state.login.user);
+  const user = signUpUser || loginUser;
+
 
   return (
     <View style={styles.container}>
@@ -19,19 +20,19 @@ const Account = ({ navigation }) => {
           <Image style={styles.image} source={require('../../assets/profile-pic.jpeg')} />
         </View>
         <View style={styles.profileTextContainer}>
-          <Text style={styles.profileName}>Ahmed Baqir</Text>
+          <Text style={styles.profileName}>{user ? user.fullName : 'Guest'}</Text>
           <Text style={styles.editAccount}>Edit Account</Text>
         </View>
       </View>
       <View style={styles.checkMainContainer}>
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-           <Image
-            source={require('../../assets/account-icons/setting-icon.png')}
-           />
+            <Image
+              source={require('../../assets/account-icons/setting-icon.png')}
+            />
             <Text style={styles.checkText}>Settings</Text>
           </View>
-          <TouchableOpacity onPress={handleNavigateToLanguages}>
+          <TouchableOpacity>
             <Image 
               source={require("../../assets/arrowRight.png")}
               style={styles.arrowIcon}
@@ -41,13 +42,13 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-          <Image 
+            <Image 
               source={require("../../assets/account-icons/orders-icon.png")}
               style={styles.arrowIcon}
             />
             <Text style={styles.checkText}>My Orders</Text>
           </View>
-          <TouchableOpacity    onPress={() => navigation.navigate('accepted_orders')} >
+          <TouchableOpacity onPress={() => navigation.navigate('accepted_orders')} >
             <Image
               source={require("../../assets/arrowRight.png")}
               style={styles.arrowIcon}
@@ -57,15 +58,13 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-           <Image 
+            <Image 
               source={require("../../assets/account-icons/privacy-policy.png")}
               style={styles.arrowIcon}
             />
             <Text style={styles.checkText}>Privacy Policy</Text>
           </View>
-          <TouchableOpacity 
-            onPress={() => navigation.navigate('privacy_policy')}
-          >
+          <TouchableOpacity onPress={() => navigation.navigate('privacy_policy')}>
             <Image
               source={require("../../assets/arrowRight.png")}
               style={styles.arrowIcon}
@@ -75,7 +74,7 @@ const Account = ({ navigation }) => {
 
         <View style={styles.checkContainer}>
           <View style={styles.iconTextContainer}>
-          <Image 
+            <Image 
               source={require("../../assets/account-icons/about-icon.png")}
               style={styles.arrowIcon}
             />
@@ -90,12 +89,12 @@ const Account = ({ navigation }) => {
         </View>
       </View>
       <TouchableOpacity style={styles.logoutContainer}
-      onPress={() => navigation.navigate('login_email')}
+        onPress={() => navigation.navigate('login_email')}
       >
-         <Image
-              source={require("../../assets/log-out.png")}
-              style={styles.arrowIcon}
-            />    
+        <Image
+          source={require("../../assets/log-out.png")}
+          style={styles.arrowIcon}
+        />    
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </View>

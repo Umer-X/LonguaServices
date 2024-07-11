@@ -1,43 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { validateFormFields } from "../validation";
+import { createSlice } from '@reduxjs/toolkit';
 
-
-
-const initialLoginState = {
-  email: "",
-  password: "",
+const initialState = {
+  email: '',
+  phoneNumber: '',
+  password: '',
+  user: null,
   errors: {},
 };
 
-
 const loginSlice = createSlice({
-  name: "login",
-  initialState: initialLoginState,
+  name: 'login',
+  initialState,
   reducers: {
     setField: (state, action) => {
       state[action.payload.field] = action.payload.value;
     },
-    validateLoginForm: (state) => {
-      const errors = validateFormFields(state);
-      state.errors = errors;
-    },
     clearErrors: (state, action) => {
-      const { field } = action.payload;
-      if (field) {
-        state.errors[field] = null;
+      if (action.payload.field) {
+        delete state.errors[action.payload.field];
       } else {
         state.errors = {};
       }
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const {
-  setField,
-  validateLoginForm,
-  clearErrors,
-} = loginSlice.actions;
+export const { setField, clearErrors, setUser } = loginSlice.actions;
 
-const loginReducer = loginSlice.reducer;
-
-export default loginReducer;
+export default loginSlice.reducer;

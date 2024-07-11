@@ -1,9 +1,10 @@
-import React from 'react';
+import {useState} from 'react';
 import {
   Text,
   StyleSheet,
   View,
   TouchableOpacity,
+  ActivityIndicator,
   ScrollView,
   Dimensions,
   Pressable,
@@ -13,39 +14,34 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {
   setField,
   validateSignUpForm,
   clearErrors,
-} from "../../redux/signUpSlice";
+  setUser,
+} from '../../redux/signUpSlice';
 import Input_Field from '../../components/Input_Filed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { bgColor } from '../../utils/colors/main_color';
+import {bgColor} from '../../utils/colors/main_color';
 
-const SignUp = ({ navigation }) => {
+const SignUp = ({navigation}) => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const { fullName, email, phoneNumber, password, confirmPassword, errors } = useSelector(state => state.signUp);
+  const {fullName, email, phoneNumber, password, confirmPassword, errors} =
+    useSelector(state => state.signUp);
 
   const handleInputChange = (field, value) => {
-    dispatch(setField({ field, value }));
-    dispatch(clearErrors({ field }));
+    dispatch(setField({field, value}));
+    dispatch(clearErrors({field}));
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     dispatch(validateSignUpForm());
-  
-    const currentState = {
-      fullName,
-      email,
-      phoneNumber,
-      password,
-      confirmPassword,
-      errors,
-    };
-  
+
     if (
-      Object.keys(currentState.errors).length === 0 &&
+      Object.keys(errors).length === 0 &&
       fullName &&
       email &&
       phoneNumber &&
@@ -53,30 +49,30 @@ const SignUp = ({ navigation }) => {
       confirmPassword
     ) {
       try {
-        const userData = {
-          fullName,
-          email,
-          phoneNumber,
-          password,
-        };
+        const userData = {fullName, email, phoneNumber, password};
         await AsyncStorage.setItem('user', JSON.stringify(userData));
-        console.log("User registered and data saved to AsyncStorage");
-        navigation.navigate("MainTabs");
+        dispatch(setUser(userData)); 
+        setLoading(false);
+        console.log('User registered and data saved to AsyncStorage');
+        navigation.navigate('MainTabs');
       } catch (error) {
-        console.log("Error saving data to AsyncStorage: ", error);
+        setLoading(false);
+        console.log('Error saving data to AsyncStorage: ', error);
       }
+    } else {
+      setLoading(false);
     }
   };
-  
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.select({ ios: 0, android: 0 })}
-    >
+      keyboardVerticalOffset={Platform.select({ios: 0, android: 0})}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          showsVerticalScrollIndicator={false}>
           <View style={styles.inputContainer}>
             <Text style={styles.subtitle}>Sign up to your New Account</Text>
             <View style={styles.input_field}>
@@ -87,10 +83,12 @@ const SignUp = ({ navigation }) => {
                 icon="user"
                 placeholder="Full Name"
                 value={fullName}
-                onChangeText={(value) => handleInputChange('fullName', value)}
+                onChangeText={value => handleInputChange('fullName', value)}
                 error={errors.fullName}
               />
-              {errors.fullName && <Text style={styles.errorText}>{errors.fullName}</Text>}
+              {errors.fullName && (
+                <Text style={styles.errorText}>{errors.fullName}</Text>
+              )}
 
               <View style={styles.textRow}>
                 <Text style={styles.leftText}>Email Address</Text>
@@ -99,10 +97,12 @@ const SignUp = ({ navigation }) => {
                 icon="email"
                 placeholder="Email"
                 value={email}
-                onChangeText={(value) => handleInputChange('email', value)}
+                onChangeText={value => handleInputChange('email', value)}
                 error={errors.email}
               />
-              {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+              {errors.email && (
+                <Text style={styles.errorText}>{errors.email}</Text>
+              )}
 
               <View style={styles.textRow}>
                 <Text style={styles.leftText}>Phone Number</Text>
@@ -111,10 +111,12 @@ const SignUp = ({ navigation }) => {
                 icon="phone"
                 placeholder="Phone Number"
                 value={phoneNumber}
-                onChangeText={(value) => handleInputChange('phoneNumber', value)}
+                onChangeText={value => handleInputChange('phoneNumber', value)}
                 error={errors.phoneNumber}
               />
-              {errors.phoneNumber && <Text style={styles.errorText}>{errors.phoneNumber}</Text>}
+              {errors.phoneNumber && (
+                <Text style={styles.errorText}>{errors.phoneNumber}</Text>
+              )}
 
               <View style={styles.textRow}>
                 <Text style={styles.leftText}>Password</Text>
@@ -124,10 +126,12 @@ const SignUp = ({ navigation }) => {
                 placeholder="Password"
                 secureTextEntry
                 value={password}
-                onChangeText={(value) => handleInputChange('password', value)}
+                onChangeText={value => handleInputChange('password', value)}
                 error={errors.password}
               />
-              {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+              {errors.password && (
+                <Text style={styles.errorText}>{errors.password}</Text>
+              )}
 
               <View style={styles.textRow}>
                 <Text style={styles.leftText}>Confirm Password</Text>
@@ -137,16 +141,24 @@ const SignUp = ({ navigation }) => {
                 placeholder="Confirm Password"
                 secureTextEntry
                 value={confirmPassword}
-                onChangeText={(value) => handleInputChange('confirmPassword', value)}
+                onChangeText={value =>
+                  handleInputChange('confirmPassword', value)
+                }
                 error={errors.confirmPassword}
               />
-              {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword}</Text>}
+              {errors.confirmPassword && (
+                <Text style={styles.errorText}>{errors.confirmPassword}</Text>
+              )}
             </View>
           </View>
 
           <View style={styles.buttonWrapper}>
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}>Sign Up</Text>
+              {loading ? (
+                <ActivityIndicator size="small" color="#ffffff" />
+              ) : (
+                <Text style={styles.buttonText}>Sign Up</Text>
+              )}
             </TouchableOpacity>
             <View style={styles.orContinueContainer}>
               <View style={styles.line} />
@@ -157,17 +169,28 @@ const SignUp = ({ navigation }) => {
             </View>
             <View style={styles.socialIconsContainer}>
               <View style={styles.socialIcons}>
-                <Image source={require('../../assets/search.png')} style={styles.socialIcon} />
+                <Image
+                  source={require('../../assets/search.png')}
+                  style={styles.socialIcon}
+                />
               </View>
               <View style={styles.socialIcons}>
-                <Image source={require('../../assets/facebook.png')} style={styles.socialIcon} />
+                <Image
+                  source={require('../../assets/facebook.png')}
+                  style={styles.socialIcon}
+                />
               </View>
               <View style={styles.socialIcons}>
-                <Image source={require('../../assets/instagram.png')} style={styles.socialIcon} />
+                <Image
+                  source={require('../../assets/instagram.png')}
+                  style={styles.socialIcon}
+                />
               </View>
             </View>
             <View style={styles.signup_in_login}>
-              <Text style={{ fontSize: 12,  color: 'black', }}>Already have an Account?</Text>
+              <Text style={{fontSize: 12, color: 'black'}}>
+                Already have an Account?
+              </Text>
               <Pressable onPress={() => navigation.navigate('login_email')}>
                 <Text style={styles.signinText}>Sign-in</Text>
               </Pressable>
